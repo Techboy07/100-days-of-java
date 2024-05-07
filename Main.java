@@ -1,36 +1,34 @@
-class Main {
+public class Main {
 
     public static void main(String[] args) {
 
-        Calculator myCalc = new Calculator();
-        int result = myCalc.add(a:31,b:3);
-        System.out.println(result);
+        Box myBox = new Box();
+        Box mybox2 = new Box();
+        double vol;
+
+        // for box 1
+        myBox.width = 10;
+        myBox.height = 20;
+        myBox.depth = 15;
+
+        // for box 2
+        mybox2.width = 3;
+        mybox2.height = 6;
+        mybox2.depth = 9;
+
+        // for box 1
+        vol = myBox.width * myBox.height * myBox.depth;
+        System.out.println("Volume is " + vol);
+
+        // for box 2
+        vol = mybox2.width * mybox2.height * mybox2.depth;
+        System.out.println("Volume is " + vol);
 
     }
 }
 
-class Calculator {
-    int a;
-    int b;
-
-    public int add(int a, int b) {
-        int sum = a + b;
-        return sum;
-    }
-
-    public int add(int a, int b, int c) {
-        int sum = a + b + c;
-        return sum;
-    }
-
-    public double add(double a, int b) {
-        double sum = a + b;
-        return sum;
-    }
-
-    public int binary_search(
-            int[] arr, int item) {
-        return 0;
-    }
-
+class Box {
+    double width;
+    double height;
+    double depth;
 }
