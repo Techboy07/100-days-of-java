@@ -1,38 +1,58 @@
-public class Main {
+// java
+class Main {
+    public static void main(String args[]) {
+        Stack mystack1 = new Stack();
+        Stack mystack2 = new Stack();
 
-    public static void main(String[] args) {
+        // push some numbers onto the stack
+        for (int i = 0; i < 10; i++)
+            mystack1.push(i);
+        for (int i = 10; i < 20; i++)
+            mystack2.push(i);
 
-        Box myBox = new Box(10, 20, 15);
-        Box mybox2 = new Box(3, 6, 9);
-        double vol;
+        // pop those numbers off the stack
+        System.out.println("Stack in mystack1:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(mystack1.pop());
 
-        // for box 1
-        vol = myBox.volume();
-        System.out.println("Volume is " + vol);
+        }
 
-        // for box 2
-        vol = mybox2.volume();
-        System.out.println("Volume is " + vol);
+        System.out.println("Stack in mystack2:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(mystack2.pop());
+        }
 
     }
 }
 
-class Box {
-    double width;
-    double height;
-    double depth;
+class Stack {
+    int stck[] = new int[10];
+    // top of stack
+    int tos;
 
-    double volume() {
-        return width * height * depth;
+    // initialise top of stack
+    Stack() {
+        tos = -1;
     }
 
-    Box(double width, double height, double depth) {
-        this.width = width;
-        this.height = height;
-        this.depth = depth;
+    // Push an item onto the stack
+    void push(int item) {
+        if (tos == 9) {
+            System.out.println("Stack is full.");
+        } else {
+            stck[++tos] = item;
+        }
     }
 
-    protected void finalize() {
+    // Pop an item from the stack
+    int pop() {
+        if (tos < 0) {
+            System.out.println("Stack underflow.");
+            return 0;
+        } else {
+            return stck[tos--];
 
+        }
     }
+
 }
