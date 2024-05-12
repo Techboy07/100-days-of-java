@@ -1,139 +1,133 @@
-class Box {
-    double width;
-    double height;
-    double depth;
+// Inheritance is a process where one class acquires the properties (methods and
+// attributes) of another. With the use of inheritance, the information is made
+// manageable in a hierarchical order.
 
-    // construct clone of an object
-    Box(Box ob) {
-        // pass object to constructor
-        width = ob.width;
-        height = ob.height;
-        depth = ob.depth;
-    }
+// subclass (child) - the class that inherits from another class
+// superclass (parent) - the class being inherited from
 
-    // constructor used when all dimensions specified
-    Box(double w, double h, double d) {
-        width = w;
-        height = h;
-        depth = d;
-    }
+// To inherit from a class, use the "extends" keyword.
 
-    // constructor used when no dimensions specified
-    Box() {
-        width = -1; // use -1 to indicate
-        height = -1; // an uninitialized
-        depth = -1; // box
-    }
+// let's say we have a class of Human. a human will have a name,age height ,
+// weight and other properties
 
-    // constructor used when cube is created
-    Box(double len) {
-        width = height = depth = len;
-    }
+class Main {
+    public static void main(String[] args) {
+        // creating a female
+        Female myGurl = new Female("charlie", 3, 20);
+        // we can acces all her properties
+        System.out.println("the girl's name is :" + myGurl.name + "she is " + myGurl.age + "years old" + "wombsize is "
+                + myGurl.wombSize);
 
-    // compute and return volume
-    double volume() {
-        return width * height * depth;
+        // a girl still behaves like a Human
+        myGurl.eat();
+        myGurl.sleep();
+        myGurl.walk();
+        myGurl.talk();
+        // a girl can do more
+        myGurl.concieve();
+        myGurl.giveBirth();
+
+        // creating a male
+        Male myGuy = new Male("micheal", 2);
+        System.out.println("the guy's name is :" + myGuy.name + "he is " + myGuy.age + "years old");
+
+        // a guy still behaves like a Human
+        myGuy.eat();
+        myGuy.sleep();
+        myGuy.walk();
+        myGuy.talk();
+        // a guy can also do more
+        myGuy.cannotConcieve();
+        myGuy.cannotGiveBirth();
+
     }
 }
 
-// Here, Box is extended to include weight.
-class BoxWeight extends Box {
-    double weight;
+class Human {
+    String name;
+    int age;
 
-    // construct clone of an object
-    BoxWeight(BoxWeight ob) { // pass object to constructor
-        super(ob);
-        weight = ob.weight;
+    // defining a constructor for Humans
+    Human(String n, int a) {
+        name = n;
+        age = a;
+        System.out.println("A human is born");
     }
 
-    // constructor for BoxWeight
-    BoxWeight(double w, double h, double d, double m) {
-        super(w, h, d);
-        weight = m;
+    // a human should be able to perform some functions like eat ,walk , talk, sleep
+    // e.t.c
+    // let's define all this as methods:
+
+    void eat() {
+        System.out.println("eating");
     }
 
-    // default constructor
-    BoxWeight() {
-        super();
-        weight = -1;
+    void walk() {
+        System.out.println("walking");
+
     }
 
-    // constructor used when cube is created
-    BoxWeight(double len, double m) {
-        super(len);
-        weight = m;
+    void talk() {
+        System.out.println("hello!");
+
+    }
+
+    void sleep() {
+        System.out.println("zzz");
+
     }
 
 }
 
-// class DemoBoxWeight {
-// public static void main(String[] args) {
-// BoxWeight mybox1 = new BoxWeight(10, 20, 15, 34.3);
-// BoxWeight mybox2 = new BoxWeight(2, 3, 4, 0.076);
-// double vol;
+// a human could be either "male" or "female" biologically but both male and
+// females are still humans
+// a female human can concieve give birth
+// a male human cannot give birth
+// if we want to declare a female class we could write a new class for female
+// and
+// do the same for male but that would be repeatitive and inefficient so instead
+// we make use of inheritance using the "extends" keyword
 
-// vol = mybox1.volume();
-// System.out.println("Volume of mybox1 is " + vol);
-// System.out.println("Weight of mybox1 is " + mybox1.weight);
-// System.out.println();
+// defining a female class
+class Female extends Human {
+    // the female has it's own properties
+    int wombSize;
 
-// vol = mybox2.volume();
-// System.out.println("Volume of mybox2 is " + vol);
-// System.out.println("Weight of mybox2 is " + mybox2.weight);
-// }
-// }
+    // defining a constructor for a female
+    Female(String n, int a, int w) {
+        super(n, a); // the super keyword is used to construct a new human from the superclass
 
-// class RefDemo {
-// public static void main(String[] args) {
-// BoxWeight weightbox = new BoxWeight(3, 5, 7, 8.37);
-// Box plainbox = new Box();
-// double vol;
+        wombSize = w;
+        System.out.println("it's a beautiful baby girl");
+    }
 
-// vol = weightbox.volume();
-// System.out.println("Volume of weightbox is " + vol);
-// System.out.println("Weight of weightbox is " + weightbox.weight);
-// System.out.println();
+    void concieve() {
+        System.out.println("she is now pregnant");
 
-// // assign BoxWeight reference to Box reference
-// plainbox = weightbox;
+    }
 
-// vol = plainbox.volume(); // OK, volume() defined in Box
-// System.out.println("Volume of plainbox is " + vol);
-// /*
-// * The following statement is invalid because plainbox
-// * does not define a weight member.
-// */
-// // System.out.println("Weight of plainbox is " + plainbox.weight);
-// }
-// }
+    void giveBirth() {
+        System.out.println("she has delivered");
 
-class DemoSuper {
-    public static void main(String args[]) {
-        BoxWeight mybox1 = new BoxWeight(10, 20, 15, 34.3);
-        BoxWeight mybox2 = new BoxWeight(2, 3, 4, 0.076);
-        BoxWeight mybox3 = new BoxWeight(); // default
-        BoxWeight mycube = new BoxWeight(3, 2);
-        BoxWeight myclone = new BoxWeight(mybox1);
-        double vol;
-        vol = mybox1.volume();
-        System.out.println("Volume of mybox1 is " + vol);
-        System.out.println("Weight of mybox1 is " + mybox1.weight);
-        System.out.println();
-        vol = mybox2.volume();
-        System.out.println("Volume of mybox2 is " + vol);
-        System.out.println("Weight of mybox2 is " + mybox2.weight);
-        System.out.println();
-        vol = mybox3.volume();
-        System.out.println("Volume of mybox3 is " + vol);
-        System.out.println("Weight of mybox3 is " + mybox3.weight);
-        System.out.println();
-        vol = myclone.volume();
-        System.out.println("Volume of myclone is " + vol);
-        System.out.println("Weight of myclone is " + myclone.weight);
-        System.out.println();
-        vol = mycube.volume();
-        System.out.println("Volume of mycube is " + vol);
-        System.out.println("Weight of mycube is " + mycube.weight);
-        System.out.println();
+    }
+}
+
+// defining a male class
+class Male extends Human {
+
+    // defining a constructor for a male
+    Male(String n, int a) {
+        super(n, a); // the super keyword is used to construct a new human from the superclass
+        System.out.println("it's a bouncing baby boy");
+
+    }
+
+    void cannotConcieve() {
+        System.out.println("sorry i can't concieve i'm a male");
+    }
+
+    void cannotGiveBirth() {
+        System.out.println("sorry i can't give birth i'm a male");
+
     }
 }
