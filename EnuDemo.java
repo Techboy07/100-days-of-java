@@ -1,36 +1,38 @@
 
-enum Apple {
-    Jonathan, GoldenDel, RedDel, Winesap, Cortland
+class EnumDemo {
+    public static void main(String[] args) {
+        Apple ap = Apple.RedDel;
+        if (ap == Apple.RedDel) {
+            System.out.println("ap contains GoldenDel.\n");
+        } else {
+            System.out.println("ap does not contains GoldenDel.\n");
+        }
+
+        for (Apple app : Apple.values()) {
+            System.out.println(app + " costs " + app.getPrice() + " cents and compares to " + app.compareTo(ap));
+            System.out.println();
+        }
+    }
+
+    int getStuff() {
+        Integer a = 2;
+        var b = a.intValue();
+        return b;
+    }
 }
 
-class EnuDemo {
-    public static void main(String[] args) {
-        // Apple ap = Apple.RedDel;
+enum Apple {
+    Jonathan(10), GoldenDel(9), RedDel(12), Winesap(15), Cortland(8);
 
-        // if (ap == Apple.GoldenDel)
-        // System.out.println("ap contains GoldenDel.\n");
-        // else
-        // System.out.println("not found");
+    private int price; // price of each apple
+    // Constructor
 
-        // // Use an enum to control a switch statement.
-        // switch (ap) {
-        // case Jonathan:
-        // System.out.println("Jonathan is red.");
-        // break;
-        // case GoldenDel:
-        // System.out.println("Golden Delicious is yellow.");
-        // break;
-        // case RedDel:
-        // System.out.println("Red Delicious is red.");
-        // break;
-        // case Winesap:
-        // System.out.println("Winesap is red.");
-        // break;
-        // case Cortland:
-        // System.out.println("Cortland is red.");
-        // break;
-        // }
-
-        System.out.println(Apple.RedDel);
+    Apple(int p) {
+        price = p;
     }
+
+    int getPrice() {
+        return price;
+    }
+
 }
